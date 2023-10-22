@@ -1,0 +1,30 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+*.venv
+venv.bak/
+ENV/
+
+# gRPC generated files
+*_pb2.py
+*_pb2_grpc.py
+
+# IDE - PyCharm, VSCode
+.idea/
+.vscode/
+
+# OS-specific files
+.DS_Store  # Mac OS
+*.swp      # Vim swap files
+*.swo      # Vim swap files
+*.log
+
+# Other
+*.bak      # backup files
+*.egg-info # egg distribution
+dist/      # distribution
+build/     # build artifacts
