@@ -1,5 +1,4 @@
 import grpc
-from google.protobuf.timestamp_pb2 import Timestamp
 import TaskTracker_pb2
 import TaskTracker_pb2_grpc
 import logging
@@ -10,13 +9,13 @@ def run():
         
         print("===== CreateTask =====")
         request1 = TaskTracker_pb2.CreateTaskRequest(Title="Task1", Content="Task 1 is first task", Tag=TaskTracker_pb2.TP_COMMON)
-        print("Creating Task: Task1,Task 1 is first task, common", stub.CreateTask(request1))
+        print("Creating Task:", stub.CreateTask(request1))
         
         request2 = TaskTracker_pb2.CreateTaskRequest(Title="Task2", Content="Task 2 is second task", Tag=TaskTracker_pb2.TP_URGENT)
-        print("Creating Task: Task2,Task 2 is second task, urgent", stub.CreateTask(request2))
+        print("Creating Task:", stub.CreateTask(request2))
         
         request3 = TaskTracker_pb2.CreateTaskRequest(Title="Task3", Content="Task 3 is third task", Tag=TaskTracker_pb2.TP_PRIORITY)
-        print("Creating Task: Task3,Task 3 is third task, priority", stub.CreateTask(request3))
+        print("Creating Task:", stub.CreateTask(request3))
         
         print("\n===== RemoveTask =====")
         removeTaskRequest = TaskTracker_pb2.RemoveTaskRequest(TaskId=2)
@@ -34,14 +33,12 @@ def run():
         listTaskRequest = TaskTracker_pb2.ListTaskRequest(Q=TaskTracker_pb2.TQ_TODO, Filter=TaskTracker_pb2.TF_ALL)
         response = stub.ListTask(listTaskRequest)
         for t in response.List:
-            created:Timestamp = t.Created
             print(f"Id: {t.Id}")
             print(f"Title: {t.Title}")
             print(f"Content: {t.Content}")
             print(f"Tag: {t.Tag}")
-            print(f"Created: {created.ToDatetime():%Y-%m-%d %H:%M:%S}")
             print("-------------------------")
 
 if __name__ == "__main__":
-        logging.basicConfig()
-        run()
+    logging.basicConfig()
+    run()

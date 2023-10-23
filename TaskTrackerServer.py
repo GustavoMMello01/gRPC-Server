@@ -14,11 +14,9 @@ class TaskTrackerServicer(TaskTracker_pb2_grpc.TaskTrackerServicer):
 
     def CreateTask(self, request, context):
         logging.info("Received request to create task with title: {}".format(request.Title))
-        newTask = TaskTracker_pb2.Task(Title=request.Title,
-                                       Content=request.Content, Tag=request.Tag)
+        newTask = TaskTracker_pb2.Task(Title=request.Title, Content=request.Content, Tag=request.Tag)
         self.TaskCount += 1
         newTask.Id = self.TaskCount
-        newTask.Created.GetCurrentTime()
         self.Todo_Tasks.append(newTask)
         logging.info("Task with title {} created with ID: {}".format(request.Title, newTask.Id))
         return TaskTracker_pb2.CreateTaskResponse(TaskId=newTask.Id)

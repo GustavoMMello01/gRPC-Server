@@ -1,84 +1,84 @@
 syntax = "proto3";
 package tasktracker;
-
 import "google/protobuf/timestamp.proto";
 
 service TaskTracker {
-rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse) {}
-rpc ListTask (ListTaskRequest) returns (ListTaskResponse) {}
-rpc ExecuteTask (ExecuteTaskRequest) returns (ExecuteTaskResponse) {}
-rpc FinalizeTask (FinalizeTaskRequest) returns (FinalizeTaskResponse) {}
-rpc RemoveTask (RemoveTaskRequest) returns (RemoveTaskResponse) {}
+    rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse) {}
+    rpc ListTask (ListTaskRequest) returns (ListTaskResponse) {}
+    rpc ExecuteTask (ExecuteTaskRequest) returns (ExecuteTaskResponse) {}
+    rpc FinalizeTask (FinalizeTaskRequest) returns (FinalizeTaskResponse) {}
+    rpc RemoveTask (RemoveTaskRequest) returns (RemoveTaskResponse) {}
 }
 
 message CreateTaskRequest {
-optional string Title = 1;
-optional string Content = 2;
-optional TaskPriority Tag = 3;
+    optional string Title = 1;
+    optional string Content = 2;
+    optional TaskPriority Tag = 3;
 }
 
 message CreateTaskResponse {
-optional sint32 TaskId = 1;
+    optional sint32 TaskId = 1;
+    optional Task createdTask = 2;
 }
 
 message ListTaskRequest {
-optional TaskQueue Q = 1;
-optional TaskFilter Filter = 2;
+    optional TaskQueue Q = 1;
+    optional TaskFilter Filter = 2;
 }
 
 message ListTaskResponse {
-repeated Task List= 1;
+    repeated Task List= 1;
 }
 
 message ExecuteTaskRequest {
-optional int32 TaskId = 1;
+    optional int32 TaskId = 1;
 }
 
 message ExecuteTaskResponse {
-optional sint32 Error = 1;
+    optional sint32 Error = 1;
 }
 
 message FinalizeTaskRequest {
-optional int32 TaskId = 1;
+    optional int32 TaskId = 1;
 }
 
 message FinalizeTaskResponse {
-optional sint32 Error = 1;
+    optional sint32 Error = 1;
 }
 
 message RemoveTaskRequest {
-optional int32 TaskId = 1;
+    optional int32 TaskId = 1;
 }
 
 message RemoveTaskResponse {
-optional sint32 Error = 1;
+    optional sint32 Error = 1;
 }
 
 enum TaskPriority {
-TP_COMMON = 0;
-TP_PRIORITY = 1;
-TP_URGENT = 2;
+    TP_COMMON = 0;
+    TP_PRIORITY = 1;
+    TP_URGENT = 2;
 }
 
 enum TaskQueue {
-TQ_TODO = 0;
-TQ_DOING = 1;
-TQ_DONE = 2;
+    TQ_TODO = 0;
+    TQ_DOING = 1;
+    TQ_DONE = 2;
 }
 
 enum TaskFilter {
-TF_ALL= 0;
-TF_COMMON = 1;
-TF_PRIORITY = 2;
-TF_URGENT = 3;
+    TF_ALL= 0;
+    TF_COMMON = 1;
+    TF_PRIORITY = 2;
+    TF_URGENT = 3;
 }
 
 message Task {
-optional int32 Id = 1;
-optional string Title = 2;
-optional string Content = 3;
-optional TaskPriority Tag = 4;
-optional google.protobuf.Timestamp Created = 5;
-optional google.protobuf.Timestamp Started = 6;
-optional google.protobuf.Timestamp Ended = 7;
+    optional int32 Id = 1;
+    optional string Title = 2;
+    optional string Content = 3;
+    optional TaskPriority Tag = 4;
+    optional google.protobuf.Timestamp Created = 5;
+    optional google.protobuf.Timestamp Started = 6;
+    optional google.protobuf.Timestamp Ended = 7;
 }
