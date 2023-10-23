@@ -46,7 +46,6 @@ source venv/bin/activate
 Após ativar o ambiente virtual, instale as dependências necessárias:
 ```bash
 pip install -r requirements.txt
-    
 ```
 
 
