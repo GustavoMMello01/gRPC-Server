@@ -24,7 +24,7 @@ O TaskTracker é uma aplicação GRPC simples para rastreamento de tarefas. Ele 
 
 ```bash
 git clone https://github.com/GustavoMMello01/gRPC-Server.git
-cd 180525
+cd TaskTracker
 
 ```
 
